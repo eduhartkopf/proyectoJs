@@ -1,0 +1,63 @@
+/* ===== Estilos móviles por defecto (iPhone 14 Pro) ===== */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  font-weight: 600;
+}
+
+/* ===== iPad 9na gen (768px a 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+
+  #inicio h2,
+  #pregunta h2,
+  #ranking h2 {
+    font-size: 1.25rem;
+  }
+
+  #inicio input,
+  #inicio button,
+  #volverInicio,
+  #reiniciar {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ===== Desktop a partir de 1024px ===== */
+@media (min-width: 1024px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+  header p {
+    font-size: 1.2rem;
+  }
+
+  #inicio h2,
+  #pregunta h2,
+  #ranking h2 {
+    font-size: 1.5rem;
+  }
+
+  #inicio input,
+  #inicio button,
+  #volverInicio,
+  #reiniciar {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main, section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

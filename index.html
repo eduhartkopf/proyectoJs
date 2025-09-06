@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia de Películas</title>
+  
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet">
+ 
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/app.js" defer></script>
+</head>
+
+<body class="bg-light">
+
+
+  <header class="bg-dark text-white text-center p-3">
+    <h1 class="fs-4">🎮 Trivia de Películas!</h1>
+    <p class="mb-0 fs-6">Ingresa tu nombre y pon a prueba tus conocimientos</p>
+  </header>
+  
+  <!-- Pantalla de inicio -->
+  <section id="inicio" class="container text-center my-4">
+    <h2 class="fs-5">Ingresa tu nombre para jugar</h2>
+    <input type="text" id="nombreJugador" class="form-control w-100 my-2" placeholder="Tu nombre">
+    <button id="empezar" class="btn btn-success w-100 mt-2">Empezar Trivia</button>
+  </section>
+
+  <!-- Juego (oculto al inicio) -->
+  <main id="juego" class="container my-4 d-none">
+    <section id="pregunta" class="text-center mb-3">
+      <h2 class="fs-5">Pregunta aparecerá aquí</h2>
+    </section>
+
+    <section id="opciones" class="d-grid gap-2">
+      <!-- Opciones dinámicas -->
+    </section>
+
+    <section id="resultado" class="text-center mt-3"></section>
+  </main>
+
+  <!-- Ranking de jugadores (oculto al inicio) -->
+  <section id="ranking" class="container my-4 d-none text-center">
+    <h2 class="fs-5">🏆 Top 5 Jugadores</h2>
+    <ol id="listaRanking" class="mb-3"></ol>
+    <button id="volverInicio" class="btn btn-primary w-100 mt-2">Volver a Jugar</button>
+  </section>
+
+  
+  <footer class="bg-dark text-white text-center p-3 mt-4">
+    <p class="mb-1">Puntaje: <span id="puntaje">0</span></p>
+    <p class="mb-1">Máximo: <span id="maximo">0</span></p>
+    <button id="reiniciar" class="btn btn-warning w-100 mt-2">Reiniciar trivia</button>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
