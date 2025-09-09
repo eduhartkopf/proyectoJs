@@ -1,0 +1,62 @@
+[
+  {
+    "pregunta": "¿En qué año se estrenó la primera película, 'Harry Potter y la piedra filosofal'?",
+    "opciones": ["2001", "2000", "2002"],
+    "respuesta": "2001"
+  },
+  {
+    "pregunta": "¿Quién fue el director de 'Harry Potter y la piedra filosofal'?",
+    "opciones": ["Chris Columbus", "Alfonso Cuarón", "David Yates"],
+    "respuesta": "Chris Columbus"
+  },
+  {
+    "pregunta": "¿Qué criatura aparece en 'Harry Potter y la cámara secreta'?",
+    "opciones": ["Basilisco", "Hipogrifo", "Thestral"],
+    "respuesta": "Basilisco"
+  },
+  {
+    "pregunta": "¿Quién dirigió 'Harry Potter y el prisionero de Azkaban'?",
+    "opciones": ["Alfonso Cuarón", "Mike Newell", "David Yates"],
+    "respuesta": "Alfonso Cuarón"
+  },
+  {
+    "pregunta": "¿En qué torneo participa Harry en 'El cáliz de fuego'?",
+    "opciones": ["Torneo de los Tres Magos", "Torneo de Quidditch Mundial", "Torneo de Magos Legendarios"],
+    "respuesta": "Torneo de los Tres Magos"
+  },
+  {
+    "pregunta": "¿Quién mata a Cedric Diggory?",
+    "opciones": ["Voldemort", "Colagusano", "Bellatrix Lestrange"],
+    "respuesta": "Colagusano"
+  },
+  {
+    "pregunta": "¿Cómo se llama el Ejército que forma Harry en 'La Orden del Fénix'?",
+    "opciones": ["Ejército de Dumbledore", "Ejército de Potter", "Ejército del Fénix"],
+    "respuesta": "Ejército de Dumbledore"
+  },
+  {
+    "pregunta": "¿Quién mata a Dumbledore?",
+    "opciones": ["Severus Snape", "Draco Malfoy", "Voldemort"],
+    "respuesta": "Severus Snape"
+  },
+  {
+    "pregunta": "¿Qué Horrocrux destruye Ron Weasley?",
+    "opciones": ["El guardapelo de Slytherin", "La diadema de Ravenclaw", "El diario de Tom Riddle"],
+    "respuesta": "El guardapelo de Slytherin"
+  },
+  {
+    "pregunta": "¿Quién es el verdadero amo de la Varita de Saúco?",
+    "opciones": ["Harry Potter", "Severus Snape", "Draco Malfoy"],
+    "respuesta": "Harry Potter"
+  },
+  {
+    "pregunta": "¿Cómo se llama el actor que interpreta a Harry Potter?",
+    "opciones": ["Daniel Radcliffe", "Rupert Grint", "Elijah Wood"],
+    "respuesta": "Daniel Radcliffe"
+  },
+  {
+    "pregunta": "¿Cuál es el nombre completo de Voldemort?",
+    "opciones": ["Tom Marvolo Riddle", "Gellert Grindelwald", "Lucius Malfoy"],
+    "respuesta": "Tom Marvolo Riddle"
+  }
+]
