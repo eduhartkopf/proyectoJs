@@ -1,17 +1,17 @@
 [
   {
     "pregunta": "¿En qué año se estrenó la primera película, 'Harry Potter y la piedra filosofal'?",
-    "opciones": ["2001", "2000", "2002"],
+    "opciones": ["2000", "2001", "2002"],
     "respuesta": "2001"
   },
   {
     "pregunta": "¿Quién fue el director de 'Harry Potter y la piedra filosofal'?",
-    "opciones": ["Chris Columbus", "Alfonso Cuarón", "David Yates"],
+    "opciones": [ "Alfonso Cuarón", "David Yates","Chris Columbus"],
     "respuesta": "Chris Columbus"
   },
   {
     "pregunta": "¿Qué criatura aparece en 'Harry Potter y la cámara secreta'?",
-    "opciones": ["Basilisco", "Hipogrifo", "Thestral"],
+    "opciones": ["Hipogrifo", "Thestral","Basilisco"],
     "respuesta": "Basilisco"
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "pregunta": "¿En qué torneo participa Harry en 'El cáliz de fuego'?",
-    "opciones": ["Torneo de los Tres Magos", "Torneo de Quidditch Mundial", "Torneo de Magos Legendarios"],
+    "opciones": ["Torneo de Quidditch Mundial", ,"Torneo de los Tres Magos"],
     "respuesta": "Torneo de los Tres Magos"
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "pregunta": "¿Cómo se llama el Ejército que forma Harry en 'La Orden del Fénix'?",
-    "opciones": ["Ejército de Dumbledore", "Ejército de Potter", "Ejército del Fénix"],
+    "opciones": [ "Ejército de Potter", "Ejército del Fénix","Ejército de Dumbledore"],
     "respuesta": "Ejército de Dumbledore"
   },
   {
     "pregunta": "¿Quién mata a Dumbledore?",
-    "opciones": ["Severus Snape", "Draco Malfoy", "Voldemort"],
+    "opciones": ["Severus Snape","Draco Malfoy", "Voldemort"],
     "respuesta": "Severus Snape"
   },
   {
@@ -46,12 +46,12 @@
   },
   {
     "pregunta": "¿Quién es el verdadero amo de la Varita de Saúco?",
-    "opciones": ["Harry Potter", "Severus Snape", "Draco Malfoy"],
+    "opciones": ["Severus Snape", "Harry Potter", "Draco Malfoy"],
     "respuesta": "Harry Potter"
   },
   {
     "pregunta": "¿Cómo se llama el actor que interpreta a Harry Potter?",
-    "opciones": ["Daniel Radcliffe", "Rupert Grint", "Elijah Wood"],
+    "opciones": [ "Rupert Grint", "Elijah Wood","Daniel Radcliffe"],
     "respuesta": "Daniel Radcliffe"
   },
   {
