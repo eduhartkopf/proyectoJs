@@ -21,7 +21,7 @@
   },
   {
     "pregunta": "¿En qué torneo participa Harry en 'El cáliz de fuego'?",
-    "opciones": ["Torneo de Quidditch Mundial", ,"Torneo de los Tres Magos"],
+    "opciones": ["Torneo de Quidditch Mundial", "Torneo Mundial de Magos", "Torneo de los Tres Magos"],
     "respuesta": "Torneo de los Tres Magos"
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "pregunta": "¿Quién mata a Dumbledore?",
-    "opciones": ["Severus Snape","Draco Malfoy", "Voldemort"],
+    "opciones": ["Draco Malfoy", "Voldemort", "Severus Snape"],
     "respuesta": "Severus Snape"
   },
   {
