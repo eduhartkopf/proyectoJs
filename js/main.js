@@ -1,41 +1,32 @@
-
 // Variables globales
-
 let preguntas = [];
 let preguntasMezcladas = [];
 let jugador = "";
 let puntajeActual = 0;
 let indicePregunta = 0;
 
-
 // Referencias al DOM
-
 const pregunta = document.querySelector("#pregunta h2");
 const opciones = document.getElementById("opciones");
 const resultado = document.getElementById("resultado");
 const siguienteBtn = document.getElementById("siguiente");
-
 const inicio = document.getElementById("inicio");
 const juego = document.getElementById("juego");
 const ranking = document.getElementById("ranking");
 const errorNombre = document.getElementById("errorNombre");
-
 const btnEmpezar = document.getElementById("empezar");
 const btnVolverInicio = document.getElementById("volverInicio");
 const btnReiniciar = document.getElementById("reiniciar");
 const puntaje = document.getElementById("puntaje");
 const maximo = document.getElementById("maximo");
 const listaRanking = document.getElementById("listaRanking");
+const progresoBarra = document.getElementById("progreso");
+const progresoTexto = document.getElementById("progreso-texto");
 
-
-// Cargar preguntas desde JSON
-// Para esta parte utilize la ayuda de la IA para que me explique 
-// como hacerlo ya que aun no vimos estos conceptos y el codigo js me quedaba muy sucio y
-// quise dejar la logica mas limpia y ordenada referenciando los archivos.
-
+// Cargar preguntas
 async function cargarPreguntas() {
   try {
-    const response = await fetch("./js/preguntas.json"); // Asegúrate que el archivo se llame preguntas.json y no preguntas.JSON
+    const response = await fetch("./js/preguntas.json");
     preguntas = await response.json();
     preguntasMezcladas = preguntas.sort(() => Math.random() - 0.5);
   } catch (error) {
@@ -43,14 +34,12 @@ async function cargarPreguntas() {
   }
 }
 
-
 // Iniciar juego
-
 btnEmpezar.addEventListener("click", () => {
   const nombreInput = document.getElementById("nombreJugador");
   jugador = nombreInput.value.trim();
 
-  if (jugador === "") {
+  if (!jugador) {
     errorNombre.classList.remove("d-none");
     return;
   }
@@ -66,9 +55,17 @@ btnEmpezar.addEventListener("click", () => {
   mostrarPregunta();
 });
 
+// Actualizar barra de progreso a medida que se completan la totalidad de las preguntas
+function actualizarProgreso() {
+  const total = preguntasMezcladas.length;
+  const actual = indicePregunta + 1;
+  const porcentaje = (actual / total) * 100;
 
-// Mostrar pregunta actual
+  progresoBarra.style.width = porcentaje + "%";
+  progresoTexto.textContent = `${actual}/${total}`;
+}
 
+// Mostrar pregunta
 function mostrarPregunta() {
   const preguntaActual = preguntasMezcladas[indicePregunta];
   pregunta.textContent = preguntaActual.pregunta;
@@ -78,35 +75,32 @@ function mostrarPregunta() {
     const btn = document.createElement("button");
     btn.className = "btn btn-outline-primary w-100";
     btn.textContent = opcion;
-
     btn.addEventListener("click", () => validarRespuesta(opcion, preguntaActual.respuesta));
     opciones.appendChild(btn);
   });
 
   siguienteBtn.classList.add("d-none");
   resultado.textContent = "";
+  actualizarProgreso();
 }
 
-
 // Validar respuesta
-
 function validarRespuesta(opcionSeleccionada, respuestaCorrecta) {
   if (opcionSeleccionada === respuestaCorrecta) {
-    resultado.textContent = "Correcto!";
+    resultado.textContent = "✅ Correcto!";
     resultado.className = "text-success";
     puntajeActual += 10;
     puntaje.textContent = puntajeActual;
   } else {
-    resultado.textContent = "❌ Incorrecto. La respuesta era: " + respuestaCorrecta;
+    resultado.textContent = `❌ Incorrecto. La respuesta era: ${respuestaCorrecta}`;
     resultado.className = "text-danger";
   }
 
+  opciones.querySelectorAll("button").forEach(b => b.disabled = true);
   siguienteBtn.classList.remove("d-none");
 }
 
-
-// Botón siguiente
-
+// Siguiente pregunta
 siguienteBtn.addEventListener("click", () => {
   indicePregunta++;
   if (indicePregunta < preguntasMezcladas.length) {
@@ -116,23 +110,17 @@ siguienteBtn.addEventListener("click", () => {
   }
 });
 
-
-// Ranking
-
+// Mostrar ranking
 function mostrarRanking() {
   juego.classList.add("d-none");
   ranking.classList.remove("d-none");
 
-  // localStorage
   let jugadores = JSON.parse(localStorage.getItem("jugadores")) || [];
   jugadores.push({ nombre: jugador, puntaje: puntajeActual });
   jugadores.sort((a, b) => b.puntaje - a.puntaje);
-
-  // top 5
   jugadores = jugadores.slice(0, 5);
   localStorage.setItem("jugadores", JSON.stringify(jugadores));
 
-  // Mostrar ranking
   listaRanking.innerHTML = "";
   jugadores.forEach(j => {
     const li = document.createElement("li");
@@ -140,23 +128,17 @@ function mostrarRanking() {
     listaRanking.appendChild(li);
   });
 
-  // Mostrar máximo
   maximo.textContent = jugadores[0]?.puntaje || 0;
 }
 
 // Botones extra
-
 btnVolverInicio.addEventListener("click", () => {
   ranking.classList.add("d-none");
   inicio.classList.remove("d-none");
-
   document.getElementById("nombreJugador").value = "";
 });
 
-btnReiniciar.addEventListener("click", () => {
-  location.reload();
-});
+btnReiniciar.addEventListener("click", () => location.reload());
 
 // Inicializar
-
 cargarPreguntas();

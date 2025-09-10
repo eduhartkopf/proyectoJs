@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pon a prueba tus conocimientos sobre Harry Potter con esta trivia interactiva. ¿Podrás responder todas las preguntas correctamente?">
+  <meta name="description"
+    content="Pon a prueba tus conocimientos sobre Harry Potter con esta trivia interactiva. ¿Podrás responder todas las preguntas correctamente?">
   <meta name="keywords" content="Harry Potter, trivia, juego de preguntas, magia, Hogwarts, películas, libros">
   <title>Trivia de Harry Potter</title>
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
   <script src="./js/main.js" defer></script>
 </head>
@@ -18,49 +18,47 @@
     <h1 class="fs-4">🎮 Trivia de Películas!</h1>
     <p class="mb-0 fs-6">Ingresa tu nombre y probá cuanto sabes del mundo mágico</p>
   </header>
-  
-  <!-- Inicio de mi trivia -->
+
+  <!-- Aca inicia la trivia -->
 
   <section id="inicio" class="container text-center my-4">
-    <h2 class="fs-5">Ingresa tu nombre para jugar</h2>
+    <h2 class="fs-5">Ingresa tu nombre Muggle para jugar</h2>
 
-    <!-- Imput para el jugador coloque su nombre -->
+    <input type="text" id="nombreJugador" class="form-control w-100 my-2" placeholder="Tu nombre">
 
-    <input 
-      type="text" 
-      id="nombreJugador" 
-      class="form-control w-100 my-2" 
-      placeholder="Tu nombre">
-
-    <!-- Mensaje para cuando el jugador no coloque su nombre
-      -->
-    <p id="errorNombre" class="text-danger d-none">
-      ⚠️ Por favor ingresa tu nombre
-    </p>
+    <p id="errorNombre" class="text-danger d-none">⚠️ Por favor ingresa tu nombre</p>
 
     <button id="empezar" class="btn btn-success w-100 mt-2">Empezar Trivia</button>
   </section>
 
-  <!-- Juego  -->
+  <!-- Juego -->
+<main id="juego" class="container my-4 d-none">
 
-  <main id="juego" class="container my-4 d-none">
-    <section id="pregunta" class="text-center mb-3">
-      <h2 class="fs-5"></h2>
-    </section>
+  <!-- Barra de progreso -->
+  <div id="progreso-container" class="mb-3">
+    <div id="progreso-barra">
+      <div id="progreso"></div>
+    </div>
+    <span id="progreso-texto">0/0</span>
+  </div>
 
-    <section id="opciones" class="d-grid gap-2">
+  <!-- Pregunta justificada -->
+  <section id="pregunta" class="mb-3 text-center">
+    <h2 class="fs-5 pregunta-texto"></h2>
+  </section>
 
-      <!-- Opciones dinámicas -->
-    </section>
+  <!-- Opciones -->
+  <section id="opciones" class="d-grid gap-2"></section>
 
-    <section id="resultado" class="text-center mt-3"></section>
+  <!-- Resultado -->
+  <section id="resultado" class="text-center mt-3"></section>
 
-    <!-- Botón de siguiente pregunta -->
+  <!-- Botón siguiente -->
+  <button id="siguiente" class="btn btn-primary w-100 mt-3 d-none">Siguiente Pregunta</button>
+</main>
 
-    <button id="siguiente" class="btn btn-primary w-100 mt-3 d-none">Siguiente Pregunta</button>
-  </main>
 
-  <!-- Ranking de los jugadores de la trivia -->
+  <!-- Ranking que se va a guardar el localStorage-->
 
   <section id="ranking" class="container my-4 d-none text-center">
     <h2 class="fs-5">🏆 Top 5 Jugadores</h2>
@@ -76,7 +74,7 @@
     <button id="reiniciar" class="btn btn-warning w-100 mt-2">Reiniciar trivia</button>
   </footer>
 
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,62 +1,110 @@
 [
   {
     "pregunta": "¿En qué año se estrenó la primera película, 'Harry Potter y la piedra filosofal'?",
-    "opciones": ["2000", "2001", "2002"],
+    "opciones": [
+      "2000",
+      "2001",
+      "2002"
+    ],
     "respuesta": "2001"
   },
   {
     "pregunta": "¿Quién fue el director de 'Harry Potter y la piedra filosofal'?",
-    "opciones": [ "Alfonso Cuarón", "David Yates","Chris Columbus"],
+    "opciones": [
+      "Alfonso Cuarón",
+      "David Yates",
+      "Chris Columbus"
+    ],
     "respuesta": "Chris Columbus"
   },
   {
     "pregunta": "¿Qué criatura aparece en 'Harry Potter y la cámara secreta'?",
-    "opciones": ["Hipogrifo", "Thestral","Basilisco"],
+    "opciones": [
+      "Hipogrifo",
+      "Thestral",
+      "Basilisco"
+    ],
     "respuesta": "Basilisco"
   },
   {
     "pregunta": "¿Quién dirigió 'Harry Potter y el prisionero de Azkaban'?",
-    "opciones": ["Alfonso Cuarón", "Mike Newell", "David Yates"],
+    "opciones": [
+      "Alfonso Cuarón",
+      "Mike Newell",
+      "David Yates"
+    ],
     "respuesta": "Alfonso Cuarón"
   },
   {
     "pregunta": "¿En qué torneo participa Harry en 'El cáliz de fuego'?",
-    "opciones": ["Torneo de Quidditch Mundial", "Torneo Mundial de Magos", "Torneo de los Tres Magos"],
+    "opciones": [
+      "Torneo de Quidditch Mundial",
+      "Torneo Mundial de Magos",
+      "Torneo de los Tres Magos"
+    ],
     "respuesta": "Torneo de los Tres Magos"
   },
   {
     "pregunta": "¿Quién mata a Cedric Diggory?",
-    "opciones": ["Voldemort", "Colagusano", "Bellatrix Lestrange"],
+    "opciones": [
+      "Voldemort",
+      "Colagusano",
+      "Bellatrix Lestrange"
+    ],
     "respuesta": "Colagusano"
   },
   {
     "pregunta": "¿Cómo se llama el Ejército que forma Harry en 'La Orden del Fénix'?",
-    "opciones": [ "Ejército de Potter", "Ejército del Fénix","Ejército de Dumbledore"],
+    "opciones": [
+      "Ejército de Potter",
+      "Ejército del Fénix",
+      "Ejército de Dumbledore"
+    ],
     "respuesta": "Ejército de Dumbledore"
   },
   {
     "pregunta": "¿Quién mata a Dumbledore?",
-    "opciones": ["Draco Malfoy", "Voldemort", "Severus Snape"],
+    "opciones": [
+      "Draco Malfoy",
+      "Voldemort",
+      "Severus Snape"
+    ],
     "respuesta": "Severus Snape"
   },
   {
     "pregunta": "¿Qué Horrocrux destruye Ron Weasley?",
-    "opciones": ["El guardapelo de Slytherin", "La diadema de Ravenclaw", "El diario de Tom Riddle"],
+    "opciones": [
+      "El guardapelo de Slytherin",
+      "La diadema de Ravenclaw",
+      "El diario de Tom Riddle"
+    ],
     "respuesta": "El guardapelo de Slytherin"
   },
   {
     "pregunta": "¿Quién es el verdadero amo de la Varita de Saúco?",
-    "opciones": ["Severus Snape", "Harry Potter", "Draco Malfoy"],
+    "opciones": [
+      "Severus Snape",
+      "Harry Potter",
+      "Draco Malfoy"
+    ],
     "respuesta": "Harry Potter"
   },
   {
     "pregunta": "¿Cómo se llama el actor que interpreta a Harry Potter?",
-    "opciones": [ "Rupert Grint", "Elijah Wood","Daniel Radcliffe"],
+    "opciones": [
+      "Rupert Grint",
+      "Elijah Wood",
+      "Daniel Radcliffe"
+    ],
     "respuesta": "Daniel Radcliffe"
   },
   {
     "pregunta": "¿Cuál es el nombre completo de Voldemort?",
-    "opciones": ["Tom Marvolo Riddle", "Gellert Grindelwald", "Lucius Malfoy"],
+    "opciones": [
+      "Tom Marvolo Riddle",
+      "Gellert Grindelwald",
+      "Lucius Malfoy"
+    ],
     "respuesta": "Tom Marvolo Riddle"
   }
 ]
