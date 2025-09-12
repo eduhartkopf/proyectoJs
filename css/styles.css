@@ -17,7 +17,7 @@ h2 {
 #progreso-barra {
   flex: 1;
   height: 20px;
-  background-color: #ddd;
+  background-color: #dddddd;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
