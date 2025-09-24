@@ -1,4 +1,5 @@
 // Variables globales
+
 let preguntas = [];
 let preguntasMezcladas = [];
 let jugador = "";
@@ -6,24 +7,80 @@ let puntajeActual = 0;
 let indicePregunta = 0;
 
 // Referencias al DOM
+
 const pregunta = document.querySelector("#pregunta h2");
 const opciones = document.getElementById("opciones");
 const resultado = document.getElementById("resultado");
 const siguienteBtn = document.getElementById("siguiente");
-const inicio = document.getElementById("inicio");
+const inicio = document.querySelector("#inicio");
 const juego = document.getElementById("juego");
 const ranking = document.getElementById("ranking");
 const errorNombre = document.getElementById("errorNombre");
 const btnEmpezar = document.getElementById("empezar");
-const btnVolverInicio = document.getElementById("volverInicio");
+const btnVolverInicio = document.querySelector("#volverInicio");
 const btnReiniciar = document.getElementById("reiniciar");
 const puntaje = document.getElementById("puntaje");
 const maximo = document.getElementById("maximo");
-const listaRanking = document.getElementById("listaRanking");
+const listaRanking = document.querySelector("#listaRanking");
 const progresoBarra = document.getElementById("progreso");
 const progresoTexto = document.getElementById("progreso-texto");
 
+
+// Para esta animación tuve que consultar a la IA 
+// para que me explique y me de las herramientas y funciones 
+// que desconocia porque eran bastante específicas, y me sumaban 
+// a la estetica del diseño.
+
+btnEmpezar.addEventListener("click", (e) => {
+  const rect = e.target.getBoundingClientRect();
+  lanzarChispas(rect.left + rect.width / 2, rect.top + rect.height / 2);
+});
+
+siguienteBtn.addEventListener("click", (e) => {
+  const rect = e.target.getBoundingClientRect();
+  lanzarChispas(rect.left + rect.width / 2, rect.top + rect.height / 2);
+});
+
+function lanzarChispas(x, y) {
+  for (let i = 0; i < 15; i++) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = x + "px";
+    sparkle.style.top = y + "px";
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 50 + Math.random() * 50;
+    const dx = Math.cos(angle) * distance + "px";
+    const dy = Math.sin(angle) * distance + "px";
+    sparkle.style.setProperty("--x", dx);
+    sparkle.style.setProperty("--y", dy);
+
+    document.body.appendChild(sparkle);
+    sparkle.addEventListener("animationend", () => sparkle.remove());
+  }
+}
+
+// efecto del confeti al finaliza el test y antes de que se vea
+// el ranking de los participantes.
+
+function lanzarConfetiFinal(callback) {
+  let count = 0;
+  const interval = setInterval(() => {
+    confetti({
+      particleCount: 120,
+      spread: 100,
+      origin: { y: 0.6 }
+    });
+    count++;
+    if (count === 3) {
+      clearInterval(interval);
+      if (callback) callback();
+    }
+  }, 500);
+}
+
 // Cargar preguntas
+
 async function cargarPreguntas() {
   try {
     const response = await fetch("./js/preguntas.json");
@@ -34,9 +91,38 @@ async function cargarPreguntas() {
   }
 }
 
+
+// para esto use IA en parte para beneficiar a la estetica
+// de la trivia, para sumarle color y animaciones que me sumaran 
+// a la presentacion.
+
+function lanzarChispas(x, y) {
+  for (let i = 0; i < 15; i++) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = x + "px";
+    sparkle.style.top = y + "px";
+
+    // Dirección y distancia random
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 50 + Math.random() * 50;
+    const dx = Math.cos(angle) * distance + "px";
+    const dy = Math.sin(angle) * distance + "px";
+    sparkle.style.setProperty("--x", dx);
+    sparkle.style.setProperty("--y", dy);
+
+    document.body.appendChild(sparkle);
+
+    sparkle.addEventListener("animationend", () => sparkle.remove());
+  }
+}
+
+
 // Iniciar juego
+
 btnEmpezar.addEventListener("click", () => {
-  const nombreInput = document.getElementById("nombreJugador");
+  const nombreInput = document.querySelector("#nombreJugador");
   jugador = nombreInput.value.trim();
 
   if (!jugador) {
@@ -55,7 +141,8 @@ btnEmpezar.addEventListener("click", () => {
   mostrarPregunta();
 });
 
-// Actualizar barra de progreso a medida que se completan la totalidad de las preguntas
+// Actualizar barra de progreso a medida que se van completando las preguntas.
+
 function actualizarProgreso() {
   const total = preguntasMezcladas.length;
   const actual = indicePregunta + 1;
@@ -65,7 +152,8 @@ function actualizarProgreso() {
   progresoTexto.textContent = `${actual}/${total}`;
 }
 
-// Mostrar pregunta
+// Mostrar pregunta.
+
 function mostrarPregunta() {
   const preguntaActual = preguntasMezcladas[indicePregunta];
   pregunta.textContent = preguntaActual.pregunta;
@@ -84,7 +172,8 @@ function mostrarPregunta() {
   actualizarProgreso();
 }
 
-// Validar respuesta
+// Validar respuesta.
+
 function validarRespuesta(opcionSeleccionada, respuestaCorrecta) {
   if (opcionSeleccionada === respuestaCorrecta) {
     resultado.textContent = "✅ Correcto!";
@@ -100,17 +189,25 @@ function validarRespuesta(opcionSeleccionada, respuestaCorrecta) {
   siguienteBtn.classList.remove("d-none");
 }
 
-// Siguiente pregunta
+// Siguiente pregunta.
+
 siguienteBtn.addEventListener("click", () => {
   indicePregunta++;
   if (indicePregunta < preguntasMezcladas.length) {
     mostrarPregunta();
   } else {
-    mostrarRanking();
+    if (preguntasMezcladas.length === 12) {
+      lanzarConfetiFinal(() => {
+        mostrarRanking();
+      });
+    } else {
+      mostrarRanking();
+    }
   }
 });
 
-// Mostrar ranking
+// Mostrar ranking.
+
 function mostrarRanking() {
   juego.classList.add("d-none");
   ranking.classList.remove("d-none");
@@ -129,9 +226,41 @@ function mostrarRanking() {
   });
 
   maximo.textContent = jugadores[0]?.puntaje || 0;
+
+
+  // Aqui se utilizó la libreria de TOASTIFY como se pedia y fue la unica manera 
+  // que encontre de implementar la librería.
+
+  Toastify({
+    text: `🎉 Felicitaciones ${jugador}! Finalizaste la trivia con ${puntajeActual} puntos.`,
+    duration: 4000,
+    gravity: "top",
+    position: "right",
+    style: {
+      background: "linear-gradient(to right, #ffcc00, #ff9900)",
+      color: "#ffffffff",
+      textAlign: "center",
+      borderRadius: "12px",
+    }
+  }).showToast();
+
+  // Lanza explosiones de confeti al finalizar la ronde de preguntas
+
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
+    }, i * 700);
+  }
 }
 
-// Botones extra
+
+// Aqui es para cuando finaliza la trivia, que vuelva al inicio para que pueda jugar el
+// siguiente participante.
+
 btnVolverInicio.addEventListener("click", () => {
   ranking.classList.add("d-none");
   inicio.classList.remove("d-none");
@@ -140,5 +269,5 @@ btnVolverInicio.addEventListener("click", () => {
 
 btnReiniciar.addEventListener("click", () => location.reload());
 
-// Inicializar
+// Inicializa el juego.
 cargarPreguntas();
