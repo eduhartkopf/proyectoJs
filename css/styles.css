@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
   font-family: Arial, sans-serif;
 }
@@ -7,6 +8,7 @@ h2 {
   font-weight: 550;
 }
 
+/* Barra de progreso */
 #progreso-container {
   display: flex;
   align-items: center;
@@ -36,11 +38,13 @@ h2 {
   text-align: right;
 }
 
-.btn btn-success {
-  color: #28a328;
+/* Botones */
+.btn.btn-success {
+  color: #ffffff;
   font-weight: bolder;
 }
 
+/* Chispas */
 .sparkle {
   position: absolute;
   width: 6px;
@@ -58,11 +62,29 @@ h2 {
     opacity: 0;
   }
 }
+#rankingInicio {
+  max-width: 500px;
+  margin: 20px auto 0 auto;
+}
 
+#rankingInicio li {
+  padding: 5px 10px;
+}
+
+
+/* Opciones de preguntas */
+#opciones button {
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Estilos para el ranking en el footer */
+#ranking .list-group-item {
+  color: #212529; /* Color de texto oscuro para que contraste con el fondo claro del item */
+}
 
 /* Media queries para responsive */
 /* Para iPad */
-
 @media (min-width: 768px) and (max-width: 1023px) {
   header h1 {
     font-size: 2rem;
@@ -72,12 +94,7 @@ h2 {
     font-size: 1rem;
   }
 
-  #inicio h2,
-  #pregunta h2,
-  #ranking h2 {
-    font-size: 1.25rem;
-  }
-
+  #inicio h2, #pregunta h2 { font-size: 1.25rem; }
   #inicio input,
   #inicio button,
   #volverInicio,
@@ -87,8 +104,7 @@ h2 {
   }
 }
 
-/* Media query para verision Desktop */
-
+/* Desktop */
 @media (min-width: 1024px) {
   header h1 {
     font-size: 2.5rem;
@@ -98,12 +114,7 @@ h2 {
     font-size: 1.2rem;
   }
 
-  #inicio h2,
-  #pregunta h2,
-  #ranking h2 {
-    font-size: 1.5rem;
-  }
-
+  #inicio h2, #pregunta h2 { font-size: 1.5rem; }
   #inicio input,
   #inicio button,
   #volverInicio,
