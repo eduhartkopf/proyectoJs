@@ -4,7 +4,7 @@ Una trivia interactiva que pone a prueba tus conocimientos sobre Harry Potter. R
 
 
 
-Tecnologías
+- . Tecnologías:
 
 HTML5, CSS3 y Bootstrap 5
 
@@ -16,7 +16,7 @@ Canvas Confetti para animaciones
 
 
 
-Características
+- . Características:
 
 Pantalla de inicio con input de nombre
 
@@ -31,7 +31,7 @@ Animaciones de chispas y confeti al iniciar y finalizar
 Botón para reiniciar la trivia y jugar de nuevo
 
 
-Uso
+- . Uso:
 
 Clona el repositorio
 
@@ -43,6 +43,6 @@ Al finalizar, se mostrará tu puntaje y el ranking se actualizará automáticame
 
 
 
-Licencia
+- . Licencia:
 
 MIT License – Libre para usar, modificar y compartir
