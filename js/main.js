@@ -18,68 +18,34 @@ const btnEmpezar = document.getElementById("empezar");
 const btnReiniciar = document.getElementById("reiniciar");
 const puntaje = document.getElementById("puntaje");
 const maximo = document.getElementById("maximo");
-const listaRanking = document.querySelector("#listaRanking");
-const progresoBarra = document.getElementById("progreso");
-const progresoTexto = document.getElementById("progreso-texto");
 const nombreInput = document.querySelector("#nombreJugador");
 
-// Ranking al cargar página
+// Lista de ranking en inicio
+const listaRankingInicio = document.getElementById("listaRankingInicio");
+
+// Referencias de progreso
+const progresoBarra = document.getElementById("progreso");
+const progresoTexto = document.getElementById("progreso-texto");
+
+// Función genérica para actualizar ranking
+function actualizarRanking(lista, jugadores) {
+  lista.innerHTML = "";
+  jugadores.forEach(j => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.textContent = `${j.nombre} - ${j.puntaje} puntos`;
+    lista.appendChild(li);
+  });
+}
+
+// Cargar ranking inicial
 function cargarRankingInicial() {
   const jugadores = JSON.parse(localStorage.getItem("jugadores")) || [];
-  listaRanking.innerHTML = "";
-
-  if (jugadores.length === 0) {
-    const li = document.createElement("li");
-    li.textContent = "No hay jugadores aún";
-    li.className = "list-group-item text-muted";
-    listaRanking.appendChild(li);
-  } else {
-    jugadores.sort((a, b) => b.puntaje - a.puntaje);
-    const top5 = jugadores.slice(0, 5);
-
-    top5.forEach((j) => {
-      const li = document.createElement("li");
-      li.className = "list-group-item";
-      li.textContent = `${j.nombre} - ${j.puntaje} puntos`;
-      listaRanking.appendChild(li);
-    });
-  }
-
+  actualizarRanking(listaRankingInicio, jugadores);
   maximo.textContent = jugadores[0]?.puntaje || 0;
 }
 
-
-// Inicio de la trivia
-function iniciarTrivia() {
-  const rect = btnEmpezar.getBoundingClientRect();
-  lanzarChispas(rect.left + rect.width / 2, rect.top + rect.height / 2);
-
-  // Obtener nombre
-  jugador = nombreInput.value.trim();
-  if (!jugador) {
-    errorNombre.classList.remove("d-none");
-    return;
-  }
-
-  errorNombre.classList.add("d-none");
-  inicio.classList.add("d-none");
-  juego.classList.remove("d-none");
-  ranking.classList.add("d-none");
-
-  puntajeActual = 0;
-  indicePregunta = 0;
-  puntaje.textContent = puntajeActual;
-
-  mostrarPregunta();
-}
-
-//  Inicio con click o Enter
-btnEmpezar.addEventListener("click", iniciarTrivia);
-nombreInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") iniciarTrivia();
-});
-
-// Animación de chispas
+// Animación de chispas en la trivia
 function lanzarChispas(x, y) {
   const cantidad = 30;
   for (let i = 0; i < cantidad; i++) {
@@ -104,6 +70,34 @@ function lanzarChispas(x, y) {
   }
 }
 
+// Chispas iniciales dispersas por toda la pantalla
+function lanzarChispasInicio() {
+  const cantidad = 50;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  for (let i = 0; i < cantidad; i++) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+
+    const size = 4 + Math.random() * 6;
+    sparkle.style.width = size + "px";
+    sparkle.style.height = size + "px";
+
+    const x = Math.random() * width;
+    const y = Math.random() * height;
+    sparkle.style.left = x + "px";
+    sparkle.style.top = y + "px";
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 50 + Math.random() * 100;
+    sparkle.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    sparkle.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+    document.body.appendChild(sparkle);
+    sparkle.addEventListener("animationend", () => sparkle.remove());
+  }
+}
 
 // Confeti final
 function lanzarConfetiFinal(callback) {
@@ -149,26 +143,34 @@ function mostrarPregunta() {
   pregunta.textContent = preguntaActual.pregunta;
 
   opciones.innerHTML = "";
+  opciones.dataset.respondido = "false";
 
-  // Mezclar opciones
   const opcionesAleatorias = [...preguntaActual.opciones].sort(() => Math.random() - 0.5);
 
   opcionesAleatorias.forEach(opcion => {
     const btn = document.createElement("button");
     btn.className = "btn btn-outline-primary w-100";
     btn.textContent = opcion;
+    btn.disabled = false;
     btn.addEventListener("click", () => validarRespuesta(opcion, preguntaActual.respuesta));
     opciones.appendChild(btn);
   });
 
   siguienteBtn.classList.add("d-none");
+  if (indicePregunta === 11) {
+    siguienteBtn.textContent = "Finalizar Trivia";
+  } else {
+    siguienteBtn.textContent = "Siguiente Pregunta";
+  }
   resultado.textContent = "";
   actualizarProgreso();
 }
 
 // Validar respuesta
 function validarRespuesta(opcionSeleccionada, respuestaCorrecta) {
-  
+  if (opciones.dataset.respondido === "true") return;
+  opciones.dataset.respondido = "true";
+
   const boton = [...opciones.querySelectorAll("button")]
     .find(b => b.textContent === opcionSeleccionada);
 
@@ -180,17 +182,17 @@ function validarRespuesta(opcionSeleccionada, respuestaCorrecta) {
 
     const rect = boton.getBoundingClientRect();
     lanzarChispas(rect.left + rect.width / 2, rect.top + rect.height / 2);
-
   } else {
     resultado.textContent = `❌ Incorrecto. La respuesta era: ${respuestaCorrecta}`;
     resultado.className = "text-danger";
-  
   }
-  
+
+  // Bloquear botones
   opciones.querySelectorAll("button").forEach(b => b.disabled = true);
+
+  // Mostrar botón "Siguiente Pregunta"
   siguienteBtn.classList.remove("d-none");
 }
-
 
 // Siguiente pregunta
 siguienteBtn.addEventListener("click", () => {
@@ -202,7 +204,7 @@ siguienteBtn.addEventListener("click", () => {
   }
 });
 
-// Ranking
+// Mostrar ranking al finalizar
 function mostrarRanking() {
   let jugadores = JSON.parse(localStorage.getItem("jugadores")) || [];
 
@@ -211,20 +213,12 @@ function mostrarRanking() {
   jugadores = jugadores.slice(0, 5);
   localStorage.setItem("jugadores", JSON.stringify(jugadores));
 
-  listaRanking.innerHTML = "";
-  jugadores.forEach(j => {
-    const li = document.createElement("li");
-    li.className = "list-group-item";
-    li.textContent = `${j.nombre} - ${j.puntaje} puntos`;
-    listaRanking.appendChild(li);
-  });
+  actualizarRanking(listaRankingInicio, jugadores);
   maximo.textContent = jugadores[0]?.puntaje || 0;
 
-  // Mostrar ranking
   juego.classList.add("d-none");
   ranking.classList.remove("d-none");
 
-  // Implementacion de Toastify 
   Toastify({
     text: `🎉 ${jugador}, terminaste la trivia con ${puntajeActual} puntos!`,
     duration: 5000,
@@ -257,23 +251,34 @@ function reiniciarTrivia() {
   cargarRankingInicial();
 }
 
-// Inicializar ranking al cargar página
-function cargarRankingInicial() {
-  const jugadores = JSON.parse(localStorage.getItem("jugadores")) || [];
-  listaRanking.innerHTML = "";
-  jugadores.forEach((j) => {
-    const li = document.createElement("li");
-    li.className = "list-group-item";
-    li.textContent = `${j.nombre} - ${j.puntaje} puntos`;
-    listaRanking.appendChild(li);
-  });
-  maximo.textContent = jugadores[0]?.puntaje || 0;
+// Inicio de la trivia
+function iniciarTrivia() {
+  lanzarChispasInicio();
+  jugador = nombreInput.value.trim();
+  if (!jugador) {
+    errorNombre.classList.remove("d-none");
+    return;
+  }
+
+  errorNombre.classList.add("d-none");
+  inicio.classList.add("d-none");
+  juego.classList.remove("d-none");
+  ranking.classList.add("d-none");
+
+  puntajeActual = 0;
+  indicePregunta = 0;
+  puntaje.textContent = puntajeActual;
+
+  mostrarPregunta();
 }
 
-// Botón reiniciar
+// Inicio con click o Enter
+btnEmpezar.addEventListener("click", iniciarTrivia);
+nombreInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") iniciarTrivia();
+});
 btnReiniciar.addEventListener("click", reiniciarTrivia);
 
-// Inicializar juego y ranking
+// Inicializar ranking y preguntas
 cargarPreguntas();
 cargarRankingInicial();
-
