@@ -24,9 +24,9 @@ Preguntas aleatorias con respuestas correctas/incorrectas
 
 Barra de progreso del juego
 
-Ranking de los 5 mejores jugadores (almacenado en localStorage)
+Ranking de los 5 mejores jugadores (almacenado en localStorage) que se muestra en la pantalla de inicia de manera fija
 
-Animaciones de chispas y confeti al iniciar y finalizar
+Animaciones de chispas y confeti al iniciar, al acertar la respuesta correcta y finalizar
 
 Botón para reiniciar la trivia y jugar de nuevo
 
@@ -46,3 +46,55 @@ Al finalizar, se mostrará tu puntaje y el ranking se actualizará automáticame
 - . Licencia:
 
 MIT License – Libre para usar, modificar y compartir
+
+
+-. Diagrama de flujo de la trivia:
+
+
+Usuario abre página
+
+Sección #inicio visible 
+
+Usuario ingresa nombre y hace click en "Empezar Trivia"
+
+
+JS: iniciarTrivia()
+  - Valida nombre
+  - Oculta #inicio, muestra #juego
+  - Inicializa puntajeActual e indicePregunta
+  - Llama a mostrarPregunta()
+  - Lanza chispas sobre botón Empezar
+
+mostrarPregunta()
+  - Muestra pregunta
+  - Mezcla opciones y crea botones
+  - Actualiza barra de progreso
+
+Usuario selecciona respuesta
+
+ validarRespuesta(opcionSeleccionada)
+   - Correcta: suma puntos + chispas
+   - Deshabilita botones
+   - Muestra botón Siguiente
+
+
+ Usuario hace click en "Siguiente"
+   - indicePregunta
+   - Si quedan preguntas: mostrarPregunta()
+   - Si no quedan: lanzarConfetiFinal()
+
+
+ mostrarRanking()
+   - Actualiza top 5 jugadores
+   - Actualiza ranking inicio y footer
+   - Muestra Toastify con puntaje final
+   - Oculta #juego, muestra #ranking
+
+  
+
+ Botón "Reiniciar"
+   - reiniciarTrivia()
+   - Resetea variables y puntajes
+   - Oculta #juego y #ranking
+   - Muestra #inicio
+   - Actualiza ranking en ambas listas
