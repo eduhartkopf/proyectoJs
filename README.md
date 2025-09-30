@@ -113,11 +113,10 @@ MIT License – Libre para usar, modificar y compartir
 
              │
              v
-┌──────────────────────────────────────────┐
+
 │ Botón "Reiniciar"                        │
 │ - reiniciarTrivia()                      │
 │ - Resetea variables y puntajes           │
 │ - Oculta #juego y #ranking               │
 │ - Muestra #inicio                        │
 │ - Actualiza ranking en ambas listas      │
-└──────────────────────────────────────────┘
