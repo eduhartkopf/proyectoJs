@@ -24,9 +24,9 @@ Preguntas aleatorias con respuestas correctas/incorrectas
 
 Barra de progreso del juego
 
-Ranking de los 5 mejores jugadores (almacenado en localStorage)
+Ranking de los 5 mejores jugadores (almacenado en localStorage) que se muestra en la pantalla de inicia de manera fija
 
-Animaciones de chispas y confeti al iniciar y finalizar
+Animaciones de chispas y confeti al iniciar, al acertar la respuesta correcta y finalizar
 
 Botón para reiniciar la trivia y jugar de nuevo
 
