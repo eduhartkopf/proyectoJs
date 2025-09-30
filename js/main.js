@@ -51,7 +51,6 @@ function cargarRankingInicial() {
 
 // Inicio de la trivia
 function iniciarTrivia() {
-  // Lanzar chispas en el botón
   const rect = btnEmpezar.getBoundingClientRect();
   lanzarChispas(rect.left + rect.width / 2, rect.top + rect.height / 2);
 
@@ -65,7 +64,7 @@ function iniciarTrivia() {
   errorNombre.classList.add("d-none");
   inicio.classList.add("d-none");
   juego.classList.remove("d-none");
-  ranking.classList.add("d-none"); // Ocultar ranking si estaba visible
+  ranking.classList.add("d-none");
 
   puntajeActual = 0;
   indicePregunta = 0;
@@ -82,11 +81,16 @@ nombreInput.addEventListener("keydown", (e) => {
 
 // Animación de chispas
 function lanzarChispas(x, y) {
-  for (let i = 0; i < 15; i++) {
+  const cantidad = 30;
+  for (let i = 0; i < cantidad; i++) {
     const sparkle = document.createElement("div");
     sparkle.className = "sparkle";
     sparkle.style.left = x + "px";
     sparkle.style.top = y + "px";
+
+    const size = 4 + Math.random() * 4;
+    sparkle.style.width = size + "px";
+    sparkle.style.height = size + "px";
 
     const angle = Math.random() * 2 * Math.PI;
     const distance = 50 + Math.random() * 50;
@@ -99,6 +103,7 @@ function lanzarChispas(x, y) {
     sparkle.addEventListener("animationend", () => sparkle.remove());
   }
 }
+
 
 // Confeti final
 function lanzarConfetiFinal(callback) {
@@ -163,19 +168,29 @@ function mostrarPregunta() {
 
 // Validar respuesta
 function validarRespuesta(opcionSeleccionada, respuestaCorrecta) {
+  
+  const boton = [...opciones.querySelectorAll("button")]
+    .find(b => b.textContent === opcionSeleccionada);
+
   if (opcionSeleccionada === respuestaCorrecta) {
     resultado.textContent = "✅ Correcto!";
     resultado.className = "text-success";
     puntajeActual += 10;
     puntaje.textContent = puntajeActual;
+
+    const rect = boton.getBoundingClientRect();
+    lanzarChispas(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
   } else {
     resultado.textContent = `❌ Incorrecto. La respuesta era: ${respuestaCorrecta}`;
     resultado.className = "text-danger";
+  
   }
-
+  
   opciones.querySelectorAll("button").forEach(b => b.disabled = true);
   siguienteBtn.classList.remove("d-none");
 }
+
 
 // Siguiente pregunta
 siguienteBtn.addEventListener("click", () => {
