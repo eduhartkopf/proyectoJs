@@ -47,14 +47,14 @@ h2 {
 /* Chispas */
 .sparkle {
   position: absolute;
-  width: 12px;   /* aumentar tamaño */
+  width: 12px;
   height: 12px;
   background: #FFD700
 ;
   border-radius: 50%;
   pointer-events: none;
   animation: chispazo 600ms forwards;
-  opacity: 0.9;  /* un poco más visible */
+  opacity: 0.9;
 }
 
 @keyframes chispazo {
@@ -63,7 +63,7 @@ h2 {
     opacity: 1;
   }
   to {
-    transform: translate(var(--x), var(--y)) scale(1.5); /* crecer más */
+    transform: translate(var(--x), var(--y)) scale(1.5);
     opacity: 0;
   }
 }
@@ -87,7 +87,7 @@ h2 {
 
 /* Estilos para el ranking en el footer */
 #ranking .list-group-item {
-  color: #212529; /* Color de texto oscuro para que contraste con el fondo claro del item */
+  color: #212529;
 }
 
 /* Media queries para responsive */
